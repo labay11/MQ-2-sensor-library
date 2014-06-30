@@ -5,28 +5,54 @@ MQ2::MQ2(int pin) {
   _pin = pin;
 }
 float* MQ2::read(bool print){
-   float vals[3];
 
-   vals[0] = MQGetGasPercentage(MQRead()/10,GAS_LPG);
-   vals[1] = MQGetGasPercentage(MQRead()/10,GAS_CO);
-   vals[2] = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);
+   lpg = MQGetGasPercentage(MQRead()/10,GAS_LPG);
+   co = MQGetGasPercentage(MQRead()/10,GAS_CO);
+   smoke = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);
+
    if (print){
        Serial.print("LPG:");
-       Serial.print(vals[0]);
+       Serial.print(lpg);
        Serial.print( "ppm" );
        Serial.print("    ");
        Serial.print("CO:");
-       Serial.print(vals[1]);
+       Serial.print(co);
        Serial.print( "ppm" );
        Serial.print("    ");
        Serial.print("SMOKE:");
-       Serial.print(vals[2]);
+       Serial.print(smoke);
        Serial.print( "ppm" );
        Serial.print("\n");
    }
-
-   return vals;
+   lastReadTime = millis();
+   static float values[3] = {lpg,co,smoke};
+   return values;
 }
+
+float MQ2::readLPG(){
+    if (millis()<(lastReadTime + 60000) && lpg != 0){
+        return lpg;
+    }else{
+        return lpg = MQGetGasPercentage(MQRead()/10,GAS_LPG);
+    }
+}
+
+float MQ2::readCO(){
+    if (millis()<(lastReadTime + 60000) && co != 0){
+        return co;
+    }else{
+        return co = MQGetGasPercentage(MQRead()/10,GAS_CO);
+    }
+}
+
+float MQ2::readSmoke(){
+    if (millis()<(lastReadTime + 60000) && smoke != 0){
+        return smoke;
+    }else{
+        return smoke = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);
+    }
+}
+
 float MQ2::MQResistanceCalculation(int raw_adc) {
    return ( ((float)RL_VALUE*(1023-raw_adc)/raw_adc));
 }
