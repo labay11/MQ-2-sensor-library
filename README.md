@@ -6,4 +6,4 @@ Usage
 ======
 To intall the library to use it with the Arduino IDE, download it as zip and unzip it into your 'libraries' folder and restart the Arduino IDE.
 
-To know how to use this library view the sample.
+To know how to use this library view the sample inside the 'arduino_sample' folder.
