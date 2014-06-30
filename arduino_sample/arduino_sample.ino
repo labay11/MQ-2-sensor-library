@@ -20,8 +20,11 @@ void loop(){
   float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
   
   //lpg = values[0];
+  lpg = mq2.readLPG();
   //co = values[1];
+  co = mq2.readCO();
   //smoke = values[2];
+  smoke = mq2.readSmoke();
   
   delay(1000);
 }
