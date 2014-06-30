@@ -4,7 +4,7 @@ MQ-2 sensor library
 This is a simple library to use with the MQ-2 sensor in arduino.
 
 Based on this page: [hola](http://sandboxelectronics.com/?p=165)
-<a href="http://www.google.com">Google</a>
+<a href="http://www.google.com" target="_blank">Google</a>
 
 Usage
 ======
