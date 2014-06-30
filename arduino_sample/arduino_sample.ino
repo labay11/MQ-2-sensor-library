@@ -17,7 +17,7 @@ void loop(){
   * 2 = CO in ppm
   * 3 = SMOKE in ppm
   */
-  float* values= mq2.read(true); //set it false if you don't want to print the values in the console
+  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
   
   //lpg = values[0];
   //co = values[1];
