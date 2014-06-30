@@ -3,7 +3,7 @@ MQ-2 sensor library
 
 This is a simple library to use with the MQ-2 sensor in arduino.
 
-Based on this page: <link hrfe="http://sandboxelectronics.com/?p=165"/>
+Based on this page: <a href="http://sandboxelectronics.com/?p=165"></a>
 Usage
 ======
 To intall the library to use it with the Arduino IDE, download it as zip and unzip it into your 'libraries' folder and restart the Arduino IDE.
