@@ -20,7 +20,7 @@ Setup:
 
 Read all data:
 <pre lang="cpp"><code>
-  float* values = mq2.read(true); //true to print to values in the Serial
+  float* values = mq2.read(true); //true to print the values in the Serial
 </code></pre>
 
 Read specific data:
