@@ -19,6 +19,10 @@ Setup:
   int pin = A0;
   
   MQ2 mq2(pin);
+  
+  void setup(){
+    mq2.setup();
+  }
 </code></pre>
 
 Read all data:
