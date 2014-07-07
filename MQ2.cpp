@@ -4,11 +4,18 @@
 MQ2::MQ2(int pin) {
   _pin = pin;
 }
+void MQ2::setup(){
+    Ro = MQCalibration();
+    Serial.print("Ro: ");
+    Serial.print(Ro);
+    Serial.println(" kohm");
+}
+
 float* MQ2::read(bool print){
 
-   lpg = MQGetGasPercentage(MQRead()/10,GAS_LPG);
-   co = MQGetGasPercentage(MQRead()/10,GAS_CO);
-   smoke = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);
+   lpg = MQGetGasPercentage(MQRead()/Ro,GAS_LPG);
+   co = MQGetGasPercentage(MQRead()/Ro,GAS_CO);
+   smoke = MQGetGasPercentage(MQRead()/Ro,GAS_SMOKE);
 
    if (print){
        Serial.print("LPG:");
@@ -30,7 +37,7 @@ float* MQ2::read(bool print){
 }
 
 float MQ2::readLPG(){
-    if (millis()<(lastReadTime + 60000) && lpg != 0){
+    if (millis()<(lastReadTime + 10000) && lpg != 0){
         return lpg;
     }else{
         return lpg = MQGetGasPercentage(MQRead()/10,GAS_LPG);
@@ -38,7 +45,7 @@ float MQ2::readLPG(){
 }
 
 float MQ2::readCO(){
-    if (millis()<(lastReadTime + 60000) && co != 0){
+    if (millis()<(lastReadTime + 10000) && co != 0){
         return co;
     }else{
         return co = MQGetGasPercentage(MQRead()/10,GAS_CO);
@@ -46,7 +53,7 @@ float MQ2::readCO(){
 }
 
 float MQ2::readSmoke(){
-    if (millis()<(lastReadTime + 60000) && smoke != 0){
+    if (millis()<(lastReadTime + 10000) && smoke != 0){
         return smoke;
     }else{
         return smoke = MQGetGasPercentage(MQRead()/10,GAS_SMOKE);
@@ -54,8 +61,9 @@ float MQ2::readSmoke(){
 }
 
 float MQ2::MQResistanceCalculation(int raw_adc) {
-   return ( ((float)RL_VALUE*(1023-raw_adc)/raw_adc));
+   return (((float)RL_VALUE*(1023-raw_adc)/raw_adc));
 }
+
 float MQ2::MQCalibration() {
   int i;
   float val=0;
@@ -74,14 +82,13 @@ float MQ2::MQRead() {
   int i;
   float rs=0;
   int val = analogRead(_pin);
- 
+
   for (i=0;i<READ_SAMPLE_TIMES;i++) {
     rs += MQResistanceCalculation(val);
     delay(READ_SAMPLE_INTERVAL);
   }
  
   rs = rs/READ_SAMPLE_TIMES;
- 
   return rs;  
 }
 float MQ2::MQGetGasPercentage(float rs_ro_ratio, int gas_id) {

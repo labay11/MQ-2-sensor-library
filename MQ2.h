@@ -1,11 +1,12 @@
-//#include "Arduino.h"
-
 #ifndef MQ2_h
 #define MQ2_h
+
 #if ARDUINO >= 100
  #include "Arduino.h"
 #else
  #include "WProgram.h"
+#endif
+
 #endif
 
 class MQ2 {
@@ -15,12 +16,13 @@ public:
 	float readLPG();
 	float readCO();
 	float readSmoke();
+	void setup();
 private:
 	int _pin;
 	int RL_VALUE = 5;     //define the load resistance on the board, in kilo ohms
 	int RO_CLEAN_AIR_FACTOR = 9.83;  
-	int CALIBARAION_SAMPLE_TIMES = 50; 
-	int CALIBRATION_SAMPLE_INTERVAL = 500;
+	int CALIBARAION_SAMPLE_TIMES = 5; 
+	int CALIBRATION_SAMPLE_INTERVAL = 50;
 	int READ_SAMPLE_INTERVAL = 50;
 	int READ_SAMPLE_TIMES = 5;
 
@@ -46,4 +48,4 @@ private:
 	int lastReadTime = 0;
 };
 
-#endif
+//#endif

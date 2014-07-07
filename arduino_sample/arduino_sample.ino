@@ -7,6 +7,9 @@ int lpg, co, smoke;
 MQ2 mq2(pin);
 
 void setup(){
+  Serial.begin(9600);
+  
+  mq2.setup();
 }
 
 void loop(){
