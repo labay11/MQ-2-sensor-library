@@ -4,7 +4,7 @@
 MQ2::MQ2(int pin) {
   _pin = pin;
 }
-void MQ2::setup(){
+void MQ2::begin(){
     Ro = MQCalibration();
     Serial.print("Ro: ");
     Serial.print(Ro);
@@ -65,10 +65,9 @@ float MQ2::MQResistanceCalculation(int raw_adc) {
 }
 
 float MQ2::MQCalibration() {
-  int i;
   float val=0;
  
-  for (i=0;i<CALIBARAION_SAMPLE_TIMES;i++) {            //take multiple samples
+  for (int i=0;i<CALIBARAION_SAMPLE_TIMES;i++) {            //take multiple samples
     val += MQResistanceCalculation(analogRead(_pin));
     delay(CALIBRATION_SAMPLE_INTERVAL);
   }

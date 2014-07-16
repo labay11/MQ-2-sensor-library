@@ -16,7 +16,7 @@ public:
 	float readLPG();
 	float readCO();
 	float readSmoke();
-	void setup();
+	void begin();
 private:
 	int _pin;
 	int RL_VALUE = 5;     //define the load resistance on the board, in kilo ohms

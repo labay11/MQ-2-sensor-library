@@ -21,7 +21,7 @@ Setup:
   MQ2 mq2(pin);
   
   void setup(){
-    mq2.setup();
+    mq2.begin();
   }
 </code></pre>
 
