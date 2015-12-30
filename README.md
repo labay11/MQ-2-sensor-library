@@ -5,6 +5,9 @@ This is a simple library to use with the MQ-2 sensor in arduino.
 
 Based on this page: <a href="http://sandboxelectronics.com/?p=165" target="_blank">Sandbox electronics</a>
 
+The following page it's also useful if you want to know how to calibrate the sensor (it's for MQ-6 sensor but it works as the MQ-2 does):
+<a href="http://www.savvymicrocontrollersolutions.com/index.php?sensor=mq-6-gas-sensors" target="_blank">http://www.savvymicrocontrollersolutions.com/index.php?sensor=mq-6-gas-sensors</a>
+
 Usage
 ======
 To intall the library to use it with the Arduino IDE, download it as zip and unzip it into your 'libraries' folder and restart the Arduino IDE.
