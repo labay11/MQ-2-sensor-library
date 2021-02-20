@@ -37,6 +37,9 @@ class MQ2 {
 		 *
 		 * The read procedure takes `READ_SAMPLE_TIMES` samples from the sensor
 		 * every `READ_SAMPLE_INTERVAL` ms and returns the average.
+		 * 
+		 * NOTE: do not modify the values of the returned array in place or deallocate it,
+		 * that could have unexpected consequences. Time to PANIC.
 		 */
 		float* read(bool print);
 
