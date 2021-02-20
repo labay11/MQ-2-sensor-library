@@ -56,8 +56,8 @@ class MQ2 {
 	private:
 		int _pin;
 		
-		int RL_VALUE = 5;  //define the load resistance on the board, in kilo ohms
-		int RO_CLEAN_AIR_FACTOR = 9.83;  // given constant
+		float RL_VALUE = 5.0;  //define the load resistance on the board, in kilo ohms
+		float RO_CLEAN_AIR_FACTOR = 9.83;  // given constant
 
 		// reads 10 times the sensor every 50ms and takes the average
 		// NOTE: it is encouraged to take more samples during the calibration
@@ -70,15 +70,15 @@ class MQ2 {
 
 		int READ_DELAY = 10000;  // 10s, time elapsed before new data can be read.
 
-		float LPGCurve[3]  =  {2.3,0.21,-0.47}; 
-		float COCurve[3]  =  {2.3,0.72,-0.34};   
-		float SmokeCurve[3] = {2.3,0.53,-0.44};                                                       
+		float LPGCurve[3] = {2.3, 0.21, -0.47}; 
+		float COCurve[3] = {2.3, 0.72, -0.34};   
+		float SmokeCurve[3] = {2.3, 0.53, -0.44};                                                       
 		float Ro = -1.0;
 
 		float values[3];  // array with the measured values in the order: lpg, CO and smoke
 		
 		float MQRead();
-		int MQGetPercentage(float *pcurve);
+		float MQGetPercentage(float *pcurve);
 		float MQCalibration();
 		float MQResistanceCalculation(int raw_adc);
 		bool checkCalibration();
