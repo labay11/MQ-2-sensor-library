@@ -25,6 +25,9 @@ class MQ2 {
 
 		/*
 		 * Stops the sensor, calibration and any read data is deleted.
+		 *
+		 * Pin information is kept, so just call `begin()` again
+		 * to read new values, no need to create a new object.
 		 */
 		void close();
 
