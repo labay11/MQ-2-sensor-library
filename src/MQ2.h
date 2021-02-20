@@ -45,6 +45,9 @@ class MQ2 {
 
 		/*
 		 * Same as before but only return the data from the specified gas.
+		 *
+		 * If the time elapsed since the last measurement is smaller than
+		 * `READ_DELAY`, the same prior value will be returned.
 		 */
 		float readLPG();
 		float readCO();
@@ -53,13 +56,19 @@ class MQ2 {
 	private:
 		int _pin;
 		
-		int RL_VALUE = 5;     //define the load resistance on the board, in kilo ohms
-		int RO_CLEAN_AIR_FACTOR = 9.83;  
-		int CALIBARAION_SAMPLE_TIMES = 5; 
+		int RL_VALUE = 5;  //define the load resistance on the board, in kilo ohms
+		int RO_CLEAN_AIR_FACTOR = 9.83;  // given constant
+
+		// reads 10 times the sensor every 50ms and takes the average
+		// NOTE: it is encouraged to take more samples during the calibration
+		int CALIBARAION_SAMPLE_TIMES = 10; 
 		int CALIBRATION_SAMPLE_INTERVAL = 50;
 
+		// reads 5 times the sensor every 50ms and takes the average
 		int READ_SAMPLE_TIMES = 5;
 		int READ_SAMPLE_INTERVAL = 50;
+
+		int READ_DELAY = 10000;  // 10s, time elapsed before new data can be read.
 
 		float LPGCurve[3]  =  {2.3,0.21,-0.47}; 
 		float COCurve[3]  =  {2.3,0.72,-0.34};   

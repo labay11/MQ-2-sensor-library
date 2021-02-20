@@ -55,7 +55,7 @@ float* MQ2::read(bool print){
 float MQ2::readLPG(){
 	if (!checkCalibration()) return 0.0;
 
-    if (millis()<(lastReadTime + 10000) && values[0] > 0)
+    if (millis()<(lastReadTime + READ_DELAY) && values[0] > 0)
         return values[0];
     else
         return (values[0] = MQGetPercentage(LPGCurve));
@@ -64,7 +64,7 @@ float MQ2::readLPG(){
 float MQ2::readCO(){
 	if (!checkCalibration()) return 0.0;
 
-    if (millis()<(lastReadTime + 10000) && values[1] > 0)
+    if (millis()<(lastReadTime + READ_DELAY) && values[1] > 0)
         return values[1];
     else
         return (values[1] = MQGetPercentage(COCurve));
@@ -73,7 +73,7 @@ float MQ2::readCO(){
 float MQ2::readSmoke(){
 	if (!checkCalibration()) return 0.0;
 
-    if (millis()<(lastReadTime + 10000) && values[2] > 0)
+    if (millis()<(lastReadTime + READ_DELAY) && values[2] > 0)
         return values[2];
     else
         return (values[2] = MQGetPercentage(SmokeCurve));
