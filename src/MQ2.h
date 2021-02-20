@@ -69,7 +69,7 @@ class MQ2 {
 		float values[3];  // array with the measured values in the order: lpg, CO and smoke
 		
 		float MQRead();
-		int MQGetPercentage(float rs_ro_ratio, float *pcurve);
+		int MQGetPercentage(float *pcurve);
 		float MQCalibration();
 		float MQResistanceCalculation(int raw_adc);
 		bool checkCalibration();
