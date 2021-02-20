@@ -117,5 +117,5 @@ float MQ2::MQRead() {
 
 float MQ2::MQGetPercentage(float *pcurve) {
 	float rs_ro_ratio = MQRead() / Ro;
-	return (pow(10.0,(((log(rs_ro_ratio)-pcurve[1])/pcurve[2]) + pcurve[0])));
+	return pow(10.0, ((log(rs_ro_ratio) - pcurve[1]) / pcurve[2]) + pcurve[0]);
 }
