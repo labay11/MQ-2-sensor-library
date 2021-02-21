@@ -2,7 +2,7 @@
 
 //change this with the pin that you use
 int pin = A0;
-int lpg, co, smoke;
+float lpg, co, smoke;
 
 MQ2 mq2(pin);
 
