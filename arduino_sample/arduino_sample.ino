@@ -9,24 +9,26 @@ MQ2 mq2(pin);
 void setup(){
   Serial.begin(9600);
   
+  // calibrate the device
   mq2.begin();
 }
 
 void loop(){
   
-  /*read the values from the sensor, it returns
-  *an array which contains 3 values.
-  * 1 = LPG in ppm
-  * 2 = CO in ppm
-  * 3 = SMOKE in ppm
-  */
-  float* values= mq2.read(true); //set it false if you don't want to print the values in the Serial
+  /*
+   * read the values from the sensor, it returns
+   * an array which contains 3 values.
+   * 0 : LPG in ppm
+   * 1 : CO in ppm
+   * 2 : SMOKE in ppm
+   */
+  float* values= mq2.read(true); //set it false if you don't want to print the values to the Serial
   
-  //lpg = values[0];
+  // lpg = values[0];
   lpg = mq2.readLPG();
-  //co = values[1];
+  // co = values[1];
   co = mq2.readCO();
-  //smoke = values[2];
+  // smoke = values[2];
   smoke = mq2.readSmoke();
   
   delay(1000);
