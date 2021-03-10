@@ -39,7 +39,7 @@ float* MQ2::read(bool print){
 	lastReadTime = millis();
 
 	if (print){
-		Serial.print(lastReadTime)
+		Serial.print(lastReadTime);
 		Serial.print("ms - LPG:");
 		Serial.print(values[0], 5);
 		Serial.print("ppm\t");
